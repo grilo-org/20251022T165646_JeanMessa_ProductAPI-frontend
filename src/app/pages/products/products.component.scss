@@ -1,0 +1,42 @@
+@use "../../../styles/variables" as v;
+
+.filter-wraper{
+    input{
+        border-color: #000;
+    }
+}
+
+.table{
+
+    border: solid 1px;
+
+    th{
+        background-color: v.$secondary-color;
+        color: #fff;
+    }
+
+    td{
+        vertical-align: middle;
+    }
+
+    .actions-wraper{
+        display: flex;
+        justify-content: space-around;
+        padding: 0 10%;
+    }
+
+    @media(max-width:513px) {
+        .actions-wraper{
+            flex-direction: column;
+        }
+    }
+
+    .btn {
+        &:disabled{
+            pointer-events: auto;
+            &:hover{
+                cursor: not-allowed;
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+<app-header></app-header>
+<div class="container pt-3">
+    <h3>Filtros</h3>
+    <div class="row filter-wraper">
+        <div class="col-lg-6 col-sm-12">
+            <label for="name">Nome:</label>
+            <input type="text" name="name" class="form-control" placeholder="Nome do produto" [(ngModel)] ="productName" (input)="filter()">
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <label for="min_price">Preço Mínimo:</label>
+            <currency-input #minPrice symbol="R$" inputName="min_price" (inputEvent)="filter()"></currency-input>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <label for="min_price">Preço Máximo:</label>
+            <currency-input #maxPrice symbol="R$" inputName="max_price" (inputEvent)="filter()"></currency-input>
+        </div>
+    </div>
+
+    <table class="table table-striped  mt-3">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (product of products$ | async; track product) {
+                <tr>
+                    <td>
+                        <div class="info-wraper">{{product.name}}</div></td>
+                    <td>
+                        <div class="info-wraper">{{ product.price | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</div></td>
+                    <td>
+                        <div class="actions-wraper">
+                            <button class="btn btn-warning" (click)="edit(product.productId)" [disabled]="role!='ADMIN'" [attr.title]="role !== 'ADMIN' ? 'A edição é permitida apenas para administradores' : null">Editar</button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal" (click)="deleteConfirmation(product.productId,product.name)" [disabled]="role!='ADMIN'" [attr.title]="role !== 'ADMIN' ? 'A exclusão é permitida apenas para administradores' : null">Excluir</button>
+                        </div>     
+                    </td>
+                </tr>
+            }@empty {
+                <tr>
+                    <td colspan="3">
+                        <h3 class="ms-3">
+                            @if (!waitingGetRequest) {
+                                @if (isFiltered) {
+                                    Nenhum produto se encaixa nos filtros atuais.
+                                }@else {
+                                    Não há nenhum produto cadastrado.
+                                }
+                            }@else{
+                                Caregando Produtos...
+                            }
+                        </h3>
+                    </td>
+                </tr>
+            }  
+        </tbody>
+    </table>
+    <confirm-dialog #deleteDialog
+        [modalTitle]="'Excluir Produto'"
+        confirmText="Excluir"
+        confirmBtnVariant="danger"
+        (confirmEvent)="delete(productToDelete)">
+    </confirm-dialog>
+</div>
+

@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container">
+    <form  class="form-control user-form" [formGroup]="userForm">
+        <h3 class="text-center">Cadastro de Usuários</h3>
+        <div class="form-wraper">
+            <div>
+                <label for="username" class="form-label">Usuário:</label>
+                <input type="text" name="username" class="form-control" formControlName="username" placeholder="Digite o nome de Usuário">
+            </div>
+            <div>
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" name="password" class="form-control" formControlName="password" placeholder="Digite a senha">
+            </div>
+            <div>
+                <label for="confirmPassword" class="form-label">Confirmar Senha:</label>
+                <input type="password" name="confirmPassword" class="form-control" formControlName="confirmPassword" placeholder="Digite novamente a senha">
+            </div>
+            <div>
+                <label for="role">Nível de Usuário</label>
+                <select class="form-select" name="role" formControlName="role">
+                    <option value="" selected>Selecione o nivel de Usuário</option>
+                    <option value="COMMON">Comum</option>
+                    <option value="ADMIN">Administrador</option>
+                </select>
+            </div>
+            <div class="btn-wraper">
+                <button class="btn btn-danger" type="reset">Limpar</button>
+                <button class="btn btn-primary" [disabled]="!userForm.valid || waitingRequest" (click)="create()">
+                    @if(!waitingRequest){
+                        Salvar
+                    }@else {
+                        Salvando...
+                    }
+                </button>
+            </div>
+        </div>
+            
+    </form>
+</div>

@@ -1,0 +1,7 @@
+<div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">{{symbol}}</span>
+    <input type="number" name="{{inputName}}" class="form-control input-int" placeholder="0" 
+        [(ngModel)]="priceInt" (input)="onInput()" min="0">
+    <input type="text" name="decimalValue" class="form-control input-decimal" placeholder=",00"
+        [value]="priceDecimal" (input)="onDecimalChange($event)">
+</div>

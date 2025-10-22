@@ -1,0 +1,28 @@
+@use "../../../styles/variables" as v;
+
+.navbar {
+    background-color: v.$primary-color;
+
+    .user {
+        width: 100%;
+        justify-content: end;
+    }
+
+    .link {
+
+        color: #eee;
+        white-space: nowrap;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    .label{
+        color: #fff;
+
+        &:hover {
+            cursor: default;
+        }
+    }
+}

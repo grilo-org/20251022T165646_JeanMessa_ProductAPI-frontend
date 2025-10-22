@@ -1,0 +1,26 @@
+<div class="container">
+    <form  class="form-control product-form" [formGroup]="productForm">
+        <h3 class="text-center">{{title}}</h3>
+        <div class="form-wraper">
+            <div>
+                <label for="name" class="form-label">Nome:</label>
+                <input type="text" name="name" class="form-control" formControlName="name">
+            </div>
+            <div>
+                <label for="price" class="form-label">Preço:</label>
+                <currency-input #currencyInput symbol="R$" inputName="price"></currency-input>
+            </div>
+            <div class="btn-wraper">
+                <button class="btn btn-danger" type="reset">Limpar</button>
+                <button class="btn btn-primary" [disabled]="!isFormComplete() || waitingRequest" (click)="onSave()">
+                    @if(!waitingRequest){
+                        Salvar
+                    }@else{
+                        Salvando...
+                    }
+                </button>
+            </div>
+        </div>
+            
+    </form>
+</div>

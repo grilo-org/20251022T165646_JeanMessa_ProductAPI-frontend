@@ -1,0 +1,24 @@
+@use "../../../styles/variables" as v;
+
+.not-found-page{
+    background-color: v.$primary-color;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .error{
+        color: #fff;
+        font-size: 70px;
+    }
+
+    .not-found{
+        color: #fff;
+        font-size: 35px;
+    }
+
+    a{
+        font-size: 52px;
+    }
+}

@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    padding: 0 15%;
+}
+
+.product-form{
+    padding: 20px 30px;
+    margin-top: 8%;
+    border-color: black;
+    .form-wraper{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    input{
+        border-color: black;
+    }
+}
+
+.btn-wraper{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@media (max-width:768px) {
+    .container{
+        display: flex;
+        padding: 0 7%;
+    }
+}
